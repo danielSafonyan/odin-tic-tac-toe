@@ -1,3 +1,42 @@
 body {
-    color: red;
+    margin: 0;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template: "top top top" 1fr 
+                   "playerOne board playerTwo" 70vh 
+                  "bottom bottom bottom"1fr
+                   / 1fr 70vh 1fr;
+}
+
+.top  {
+    grid-area: top;
+    background-color: yellow;
+}
+
+.playerOne {
+    grid-area: playerOne;
+    background-color: red;
+}
+.playerTwo {
+    grid-area: playerTwo;
+    background-color: plum;
+}
+.bottom  {
+    grid-area: bottom;
+    background-color: greenyellow;
+}
+
+.board {
+    grid-area: board;
+    background-color: antiquewhite;
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+} 
+
+.cell {
+    border: 1px solid black;
 }

@@ -61,16 +61,15 @@ const winingLines = [
 function checkState() {
     for (let line of winingLines) {
         if (hasWinner(line)) {
-            console.log(`${currentPlayer} has won.`);
-            return currentPlayer;
+            console.log(`${currentPlayer.name} has won.`);
         } else if (isFull()) {
             console.log("It's a draw!");
-        }    
+        }
     }
 
     function hasWinner(line) {
         const result = line.reduce(((a, b) => a + b.value), "");
-        if (result == currentPlayer.repeat(3)) {
+        if (result == currentPlayer.value.repeat(3)) {
             return true;
         } else {
             return false;
@@ -84,31 +83,46 @@ function checkState() {
     }
 }
 
-let inputState = 'OXOXXXOO ';
-let currentPlayer = 'X';
+// let inputState = 'OXOXXXOO ';
 
-for (let i = 0; i < boardArray.length; i++) {
-    boardArray[i].value = inputState[i];
-} 
 
-// checkState()
+// for (let i = 0; i < boardArray.length; i++) {
+//     boardArray[i].value = inputState[i];
+// }
 
 function createPlayer(name, value) {
     return { name, value}
 }
 
 const playerOne = createPlayer("User", "X");
-const playerTwo = createPlayer("Computer", "Y");
-
-const players = [playerOne, playerTwo];
+const playerTwo = createPlayer("Computer", "O");
+const players = [playerTwo, playerOne];
+let currentPlayer = playerOne;
 
 function switchPlayers() {
-    let currentPlayer = players.shift();
+    currentPlayer = players.shift();
     players.push(currentPlayer);
-    return currentPlayer;
 }
 
+function cellIsEmpty(idx) {
+    return boardArray[idx].value == ' ';
+}
 
+const cells = document.querySelectorAll(".cell");
+cells.forEach(cell => cell.addEventListener('click', checkIfAvailable));
+
+function checkIfAvailable(event) {
+    const cellId = event.target.dataset['id'];
+    if (cellIsEmpty(cellId)) {
+        cells[cellId].innerHTML = currentPlayer.value;
+        boardArray[cellId].value = currentPlayer.value;
+        checkState();
+        console.log(`Putting my ${currentPlayer.value} mark here!`);
+        switchPlayers();
+    } else {
+        console.log("Cell is occupied");
+    }
+} 
 
 
 
