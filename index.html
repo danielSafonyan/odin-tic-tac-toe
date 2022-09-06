@@ -7,11 +7,17 @@
     <title>Odin Tic Tac Toe</title>
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
+    <script src="./test-script.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <div class="top">Top</div>
-        <div class="playerOne">PlayerOne</div>
+        <div class="top">
+            <div class="status">Player X moves.</div>
+        </div>
+        <div class="playerOne player">
+            <div class="name">User</div>
+            <div class="score">0</div>
+        </div>
         <div class="board">
             <div data-id="0" class="cell"></div>
             <div data-id="1" class="cell"></div>
@@ -23,8 +29,11 @@
             <div data-id="7" class="cell"></div>
             <div data-id="8" class="cell"></div>
         </div>
-        <div class="playerTwo">PlayerTwo</div>
-        <div class="bottom">Bottom</div>
+        <div class="playerTwo player">
+            <div class="name">Computer</div>
+            <div class="score">0</div>
+        </div>
+        <div class="bottom"></div>
     </div>
 </body>
 </html>
